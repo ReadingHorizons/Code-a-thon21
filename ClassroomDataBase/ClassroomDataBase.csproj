@@ -52,7 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClassroomDataBase.cs" />
+    <Compile Include="ClassroomDB.cs" />
     <Compile Include="DataTables\Student.cs" />
     <Compile Include="DataTables\Assignment.cs" />
     <Compile Include="DataTables\Class.cs" />

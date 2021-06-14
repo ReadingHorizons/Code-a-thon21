@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ClassroomDataBase;
 
 namespace Code_a_thon21.Controllers
 {
@@ -10,6 +11,8 @@ namespace Code_a_thon21.Controllers
     {
         public ActionResult Index()
         {
+            ClassroomDB DB = new ClassroomDB();
+            var teacherList = DB.Teachers.ToList();
             return View();
         }
 

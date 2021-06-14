@@ -9,10 +9,10 @@ using ClassroomDataBase.DataTables;
 
 namespace ClassroomDataBase
 {
-    public class ClassroomDataBase: DbContext
+    public class ClassroomDB: DbContext
     {
         private static string connectionString = ConfigurationManager.ConnectionStrings["ClassroomDatabase"].ConnectionString;
-        public ClassroomDataBase()
+        public ClassroomDB()
         {
             this.Database.Connection.ConnectionString = connectionString;
         }
