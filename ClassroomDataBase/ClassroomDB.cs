@@ -20,6 +20,12 @@ namespace ClassroomDataBase
         public virtual DbSet<Student> Students { get; set; } 
         public virtual DbSet<Assignment> Assignments { get; set; } 
         public virtual DbSet<Class> Classes { get; set; } 
-        public virtual DbSet<StudentGrade> StudentGrades { get; set; } 
+        public virtual DbSet<StudentGrade> StudentGrades { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            Database.SetInitializer<ClassroomDB>(null);
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
