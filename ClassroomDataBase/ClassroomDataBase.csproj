@@ -56,6 +56,7 @@
     <Compile Include="DataTables\Student.cs" />
     <Compile Include="DataTables\Assignment.cs" />
     <Compile Include="DataTables\Class.cs" />
+    <Compile Include="DataTables\StudentGrade.cs" />
     <Compile Include="DataTables\Teacher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
