@@ -52,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClassroomDataBase.cs" />
+    <Compile Include="DataTables\Student.cs" />
+    <Compile Include="DataTables\Assignment.cs" />
     <Compile Include="DataTables\Class.cs" />
     <Compile Include="DataTables\Teacher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
