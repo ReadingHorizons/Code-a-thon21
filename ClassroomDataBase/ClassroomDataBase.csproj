@@ -42,6 +42,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -51,7 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClassroomDataBase.cs" />
+    <Compile Include="ClassroomDB.cs" />
     <Compile Include="DataTables\Student.cs" />
     <Compile Include="DataTables\Assignment.cs" />
     <Compile Include="DataTables\Class.cs" />

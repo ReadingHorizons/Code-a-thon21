@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassroomDataBase.DataTables
 {
-    class Student
+    public class Student
     {
         public int Id { get; set; }
         public String FirstName { get; set; }
