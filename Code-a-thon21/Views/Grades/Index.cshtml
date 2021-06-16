@@ -25,12 +25,22 @@
         <div class="col-md-4">
             <select id="changeStudent" class="form-control">
                 @foreach (var student in Model.Students)
-                { 
-                    //if (Request.Url.AbsolutePath)
-                    //var temp = Request.Url;
-                    <option value="@student.Id">
-                        @student.FirstName @student.LastName 
-                    </option>
+                {
+                    var temp = Request.Url.AbsolutePath;
+                    int index = temp.LastIndexOf('/');
+                    temp = temp.Remove(0, index + 1);
+                    if (temp == student.Id.ToString())
+                    {
+                        <option value="@student.Id" selected>
+                            @student.FirstName @student.LastName
+                        </option>
+                    }
+                    else
+                    {
+                        <option value="@student.Id">
+                            @student.FirstName @student.LastName
+                        </option>
+                    }
                 }
             </select>
         </div>
@@ -112,10 +122,10 @@
 </body>
 </html>
 @section Scripts {
-<script>
-    $('#changeStudent').on('change', function () {
-        let id = $('option:selected', this).attr('value');
-        window.location.href = '/grades/index/' + id;
-    });
-</script>
-    }
+    <script>
+        $('#changeStudent').on('change', function () {
+            let id = $('option:selected', this).attr('value');
+            window.location.href = '/grades/index/' + id;
+        });
+    </script>
+}
