@@ -13,6 +13,7 @@ namespace ClassroomDataBase.DataTables
         public int ClassId { get; set; }
         public DateTime DueDate { get; set; }
         public int Score { get; set; }
-        public float AssignmentWeight { get; set; }
+        public double AssignmentWeight { get; set; }
+        public string Subject { get; set; }
     }
 }

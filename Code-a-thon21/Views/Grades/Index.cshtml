@@ -1,18 +1,97 @@
 ﻿@{
     ViewBag.Title = "Student Grades";
+    
 }
 
-@model Code-a-thon21.ViewModels.GradesViewModel
+@model Code_a_thon21.ViewModels.GradesViewModel
+
 
 <html>
 <head>
     <meta charset="utf-8" />
     <title>Student Grade</title>
+    <style>
+        .heading {
+            font-size: 18px;
+            background-color: lightgrey;
+        }
+    </style>
 </head>
 <body>
-    <h2>Grades for @@db.Student.Name</h2>
-    <h2>Final Grade: @@do math here</h2>
-    <table>
+    <h2>Grades for @Model.Student.FirstName @Model.Student.LastName</h2>
+    @{
+        var totalGrade = 0.0;
+        var subjectGrade = 0.0;
+        foreach (var subject in Model.SubjectGrades)
+        {
+            subjectGrade = 0;
+            var subjectWeight = Model.SubjectWeight.Where(x => x.Subject == subject.Key).FirstOrDefault().Weight;
+            foreach (var grade in subject.Value)
+            {
+                var totalPoints = Model.Assignments.Where(x => x.Id == grade.AssignmentId).FirstOrDefault().Score;
+                subjectGrade += grade.Grade / totalPoints;
+            }
+            subjectGrade = subjectGrade * subjectWeight / subject.Value.Count();
+            subjectGrade *= 100;
+            totalGrade += subjectGrade;
+        }
+
+    }
+
+
+
+    <table width="50%">
+        <thead>
+            <tr>
+                <td><b>Assignment</b></td>
+                <td><b>Points</b></td>
+                <td><b>Grade</b></td>
+            </tr>
+        </thead>
+        @* Have each grade sction organized by subject and and show the weight at the beginning with the neame of the subject *@
+        <tbody>
+            @foreach (var grade in Model.SubjectGrades)
+            {
+
+                <tr class="heading">
+                    <td>
+                        @grade.Key
+                    </td>
+                    <td style="font-size: 10px; text-align: right;" colspan="2">
+                        @{
+                            var assignmentWeight = Model.SubjectWeight.Where(x => x.Subject == grade.Key).FirstOrDefault().Weight;
+                            assignmentWeight *= 100;
+                        }
+                        Weight: @assignmentWeight%
+                    </td>
+                </tr>
+                foreach (var assignment in grade.Value)
+                {
+                    <tr>
+                        <td>
+                            @{
+                                var assignmentModel = Model.Assignments.Where(x => x.Id == assignment.AssignmentId).FirstOrDefault();
+                            }
+                            @assignmentModel.AssignmentName
+                        </td>
+                        <td>
+                            @assignment.Grade/@assignmentModel.Score
+                        </td>
+                        <td>
+                            @{
+                                var percentage = assignment.Grade / assignmentModel.Score * 100;
+                            }
+                            @percentage%
+                        </td>
+                    </tr>
+
+                }
+            }
+            <tr>
+                <td colspan="2" style="text-align: right; padding-right:5px;"><b>Final Grade:</b></td>\
+                <td><b> @totalGrade%</b></td>
+            </tr>
+        </tbody>
     </table>
 </body>
 </html>
