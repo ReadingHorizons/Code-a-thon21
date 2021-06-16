@@ -10,6 +10,7 @@ namespace Code_a_thon21.ViewModels
         public List<Assignment> Assignments { get; set; }
         public Dictionary<string, List<StudentGrade>> SubjectGrades {get; set;}
         public List<SubjectWeights> SubjectWeight { get; set; }
+        public List<Student> Students { get; set; }
     }
 }
 

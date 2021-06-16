@@ -12,11 +12,11 @@ namespace Code_a_thon21.Controllers
     public class GradesController : Controller
     {
         // GET: Grades
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
             ClassroomDB db = new ClassroomDB();
             var gradeViewModel = new GradesViewModel();
-            gradeViewModel.Student = db.Students.Where(x => x.Id == 2).FirstOrDefault();
+            gradeViewModel.Student = db.Students.Where(x => x.Id == id).FirstOrDefault();
             gradeViewModel.Grades = db.StudentGrades.Where(x => x.StudentId == gradeViewModel.Student.Id).ToList();
             var assignmentIds = gradeViewModel.Grades.Select(x => x.AssignmentId).ToList();
             gradeViewModel.Assignments = db.Assignments.Where(x => assignmentIds.Contains(x.Id)).ToList();
@@ -32,6 +32,7 @@ namespace Code_a_thon21.Controllers
             }
             gradeViewModel.SubjectWeight = db.SubjectWeights.ToList();
             gradeViewModel.SubjectGrades = organizedSubjects;
+            gradeViewModel.Students = db.Students.ToList();
             return View(gradeViewModel);
         }
     }
