@@ -21,6 +21,7 @@ namespace ClassroomDataBase
         public virtual DbSet<Assignment> Assignments { get; set; } 
         public virtual DbSet<Class> Classes { get; set; } 
         public virtual DbSet<StudentGrade> StudentGrades { get; set; }
+        public virtual DbSet<SubjectWeights> SubjectWeights { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

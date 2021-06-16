@@ -14,5 +14,6 @@ namespace ClassroomDataBase.DataTables
         public DateTime DueDate { get; set; }
         public int Score { get; set; }
         public double AssignmentWeight { get; set; }
+        public string Subject { get; set; }
     }
 }
