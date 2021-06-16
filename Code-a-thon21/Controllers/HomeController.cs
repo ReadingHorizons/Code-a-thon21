@@ -28,6 +28,7 @@ namespace Code_a_thon21.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+
         }
     }
 }
