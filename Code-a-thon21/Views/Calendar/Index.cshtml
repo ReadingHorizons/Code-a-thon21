@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    .strikethrough {
+        text-decoration: line-through;
+    }
+
+</style>
+<div class="row">
+    <div class="panel-heading">
+        <div class="col-md-8  custom-heading3">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <section class="col-md-12 col-md-push-0">
+        <div class="row">
+            <div class="col-xs-9 col-xs-push-2">
+                <div class="box box-primary">
+                    <div class="box-body no-padding">
+                        <!-- THE CALENDAR -->
+                        <div id="calendar"></div>
+                    </div><!-- /.box-body -->
+                </div><!-- /. box -->
+            </div><!-- /.col -->
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#calendar').fullCalendar({
+                header:
+                {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                buttonText: {
+                    today: 'today',
+                    month: 'month',
+                    week: 'week',
+                    day: 'day'
+                },
+
+                events: function (start, end, timezone, callback) {
+                    $.ajax({
+                        url: '/Calendar/GetCalendarData',
+                        type: "GET",
+                        dataType: "JSON",
+
+                        success: function (result) {
+                            var events = [];
+                            var now = moment();
+
+                            $.each(result, function (i, data) {
+                                console.log(now);
+                                console.log(moment(data.AssignmentDate));
+                                events.push(
+                                    {
+                                        title: data.AssignmentName,
+                                        //description: data.Desc,
+                                        start: moment(data.AssignmentDate).format('YYYY-MM-DD'),
+                                        end: moment(data.AssignmentDate).format('YYYY-MM-DD'),
+                                        backgroundColor: moment(data.AssignmentDate) > now ? "#24AD24" : moment(data.AssignmentDate) < now ? "#E80F0C" : "#1B26EB",
+                                        //borderColor: "#fc0101"
+                                        className: data.IsSubmitted?["strikethrough"]: [""]
+                                    });
+                            });
+
+                            callback(events);
+                        }
+                    });
+                },
+
+                eventRender: function (event, element) {
+                    element.qtip(
+                        {
+                            content: event.description
+                        });
+                },
+
+                editable: false
+            });
+        });
+    </script>
+}

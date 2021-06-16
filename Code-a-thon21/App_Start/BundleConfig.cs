@@ -25,6 +25,9 @@ namespace Code_a_thon21
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/Script-calendar").Include(
+                        "~/Scripts/script-custom-calendar"));
         }
     }
 }
